@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header translucent="true">
   <ion-toolbar color="secondary">
     <ion-buttons slot="start">
       <ion-button>
@@ -22,4 +22,23 @@
     animated="true"
     placeholder="Rechercher..."
   ></ion-searchbar>
+
+  <ion-list>
+    <ion-card
+      button
+      *ngFor="let article of articles"
+      routerLink="/article"
+      [state]="{article: article}"
+    >
+      <img alt="" src="{{article.urlToImage}}" />
+      <ion-card-header>
+        <ion-card-subtitle color="primary"
+          >{{ article.author }}</ion-card-subtitle
+        >
+        <ion-card-title>{{ article.title }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content> {{ article.description }} </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>

@@ -1,4 +1,5 @@
 ion-header {
+  background-color: transparent !important;
   width: calc(100% - 22px);
   margin: 10px auto;
 
@@ -15,5 +16,17 @@ ion-header {
 ion-content {
   ion-searchbar {
     --background: #2c303a;
+  }
+
+  ion-card {
+    --background: #2c303a;
+
+    ion-card-title {
+      font-size: 20px;
+    }
+
+    ion-card-content {
+      color: #a8a6ad;
+    }
   }
 }
