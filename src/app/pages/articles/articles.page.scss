@@ -1,0 +1,19 @@
+ion-header {
+  width: calc(100% - 22px);
+  margin: 10px auto;
+
+  ion-toolbar {
+    border-radius: 15px;
+
+    ion-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+ion-content {
+  ion-searchbar {
+    --background: #2c303a;
+  }
+}
