@@ -16,20 +16,32 @@ export class ArticlesPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadArticles();
+    this.loadArticles('');
   }
 
-  async loadArticles() {
-    const loading = await this.loadingController.create({
-      spinner: 'circles',
-    });
-    await loading.present();
+  async loadArticles(content: string) {
+    if (content === '') {
+      const loading = await this.loadingController.create({
+        spinner: 'circles',
+        cssClass: 'custom-loading',
+      });
+      await loading.present();
 
-    this.articlesService.getLatestNews().subscribe((res) => {
-      let data = Object.values(res)[2];
-      loading.dismiss();
-      this.articles = [...this.articles, ...data];
-      console.log(this.articles);
-    });
+      this.articlesService.getLatestNews().subscribe((res) => {
+        let data = Object.values(res)[2];
+        loading.dismiss();
+        this.articles = [...data];
+      });
+    } else {
+      this.articlesService.getSearchingNews(content).subscribe((res) => {
+        let data = Object.values(res)[2];
+        this.articles = [...data];
+      });
+    }
+  }
+
+  searching(event: any) {
+    let value = event.detail.value;
+    this.loadArticles(value);
   }
 }

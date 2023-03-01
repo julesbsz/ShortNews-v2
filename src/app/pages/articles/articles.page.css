@@ -1,0 +1,22 @@
+ion-toolbar {
+  width: calc(100% - 22px);
+  margin: 10px auto;
+  border-radius: 15px;
+}
+ion-toolbar ion-icon {
+  width: 24px;
+  height: 24px;
+}
+
+ion-content ion-searchbar {
+  --background: #2c303a;
+}
+ion-content ion-card {
+  --background: #2c303a;
+}
+ion-content ion-card ion-card-title {
+  font-size: 20px;
+}
+ion-content ion-card ion-card-content {
+  color: #a8a6ad;
+}/*# sourceMappingURL=articles.page.css.map */

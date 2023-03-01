@@ -1,11 +1,8 @@
 ion-header {
-  background-color: transparent !important;
-  width: calc(100% - 22px);
-  margin: 10px auto;
-
   ion-toolbar {
+    width: auto;
     border-radius: 15px;
-
+    margin: 10px;
     ion-icon {
       width: 24px;
       height: 24px;

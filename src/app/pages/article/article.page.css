@@ -1,0 +1,16 @@
+ion-content ion-card ion-card-subtitle {
+  padding: 10px 0 15px 0;
+}
+ion-content ion-card ion-card-title {
+  font-size: 20px;
+}
+ion-content ion-card ion-card-content {
+  color: #a8a6ad;
+}
+ion-content ion-card ion-card-content {
+  padding: 10px 0;
+  text-align: justify;
+}
+ion-content ion-card ion-button {
+  --padding-start: 0;
+}/*# sourceMappingURL=article.page.css.map */

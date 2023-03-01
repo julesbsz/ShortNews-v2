@@ -13,4 +13,10 @@ export class ArticlesService {
       `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${environment.news.key}`
     );
   }
+
+  getSearchingNews(content: string) {
+    return this.http.get(
+      `https://newsapi.org/v2/everything?q=${content}&apiKey=${environment.news.key}`
+    );
+  }
 }
