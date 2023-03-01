@@ -1,9 +1,29 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>article</ion-title>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateForward()">
+        <ion-icon name="arrow-back-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>{{data.author}}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="share-social-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <img [src]="data.urlToImage" alt="" />
+    <ion-card-subtitle color="primary">{{data.publishedAt}}</ion-card-subtitle>
+    <ion-card-title>{{data.title}}</ion-card-title>
+    <ion-card-content>{{ data.content }}</ion-card-content>
+    <ion-button color="primary" fill="clear" (click)="openBrowser()"
+      >Read the article</ion-button
+    >
+  </ion-card>
 </ion-content>

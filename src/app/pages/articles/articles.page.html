@@ -27,7 +27,7 @@
     <ion-card
       button
       *ngFor="let article of articles"
-      routerLink="/article"
+      [routerLink]="['/article']"
       [state]="{article: article}"
     >
       <img alt="" src="{{article.urlToImage}}" />
