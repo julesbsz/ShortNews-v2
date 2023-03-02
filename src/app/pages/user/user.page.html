@@ -5,7 +5,36 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="loginWithGoogle()">Login with Google</ion-button>
+  <form [formGroup]="credentials" (ngSubmit)="login()">
+    <ion-item fill="solid">
+      <ion-input
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      ></ion-input>
+      <ion-note
+        slot="error"
+        *ngIf="(email!.dirty || email!.touched) && email!.errors"
+        >Email is invalid</ion-note
+      >
+    </ion-item>
 
-  <p>{{ userInfo | json }}</p>
+    <ion-item fill="solid">
+      <ion-input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      ></ion-input>
+      <ion-note
+        slot="error"
+        *ngIf="(password!.dirty || password!.touched) && password!.errors"
+        >Password needs to be at least 6 characters</ion-note
+      >
+    </ion-item>
+
+    <ion-button type="submit" [disabled]="!credentials.valid">Login</ion-button>
+    <ion-button type="button" (click)="register()">Register</ion-button>
+  </form>
+
+  <ion-button (click)="loginWithGoogle()">Login with Google</ion-button>
 </ion-content>
