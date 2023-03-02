@@ -4,4 +4,6 @@
     <string name="title_activity_main">ShortNews</string>
     <string name="package_name">com.julesbousrez.shortnews</string>
     <string name="custom_url_scheme">com.julesbousrez.shortnews</string>
+
+    <string name="server_client_id">347505037946-mve8cg6bdt2h05ljbfsq81pqf4bff4vh.apps.googleusercontent.com</string>
 </resources>

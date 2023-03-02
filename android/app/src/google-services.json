@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "347505037946",
+    "project_id": "shortnews-4330b",
+    "storage_bucket": "shortnews-4330b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347505037946:android:b48a610e3128e6e4b8e1c3",
+        "android_client_info": {
+          "package_name": "com.julesbousrez.shortnews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "347505037946-nce9eu37dfqeekrikjf386q18ietq495.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.julesbousrez.shortnews",
+            "certificate_hash": "89cb480b5e5a0dd024b3a4ebe54c81d42923a2a1"
+          }
+        },
+        {
+          "client_id": "347505037946-rvjhvbutjhsekb1uab15ht445062vooo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDALvK4ddKE7Q1VFHsu2dsuVNsx8UlDEfM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "347505037946-rvjhvbutjhsekb1uab15ht445062vooo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

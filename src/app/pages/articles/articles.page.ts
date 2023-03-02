@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { LoadingController, NavController } from '@ionic/angular';
 import { ArticlesService } from 'src/app/services/articles/articles.service';
 
 @Component({
@@ -12,32 +13,42 @@ export class ArticlesPage implements OnInit {
 
   constructor(
     private articlesService: ArticlesService,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private router: Router,
+    private navController: NavController
   ) {}
 
   ngOnInit() {
     this.loadArticles('');
   }
 
-  async loadArticles(content: string) {
-    if (content === '') {
-      const loading = await this.loadingController.create({
-        spinner: 'circles',
-        cssClass: 'custom-loading',
-      });
-      await loading.present();
-
-      this.articlesService.getLatestNews().subscribe((res) => {
-        let data = Object.values(res)[2];
-        loading.dismiss();
-        this.articles = [...data];
-      });
+  navigate(location: string) {
+    if (location === 'user') {
+      this.navController.setDirection('back');
     } else {
-      this.articlesService.getSearchingNews(content).subscribe((res) => {
-        let data = Object.values(res)[2];
-        this.articles = [...data];
-      });
+      this.navController.setDirection('forward');
     }
+    this.router.navigate([`/${location}`]);
+  }
+
+  async loadArticles(content: string) {
+    // if (content === '') {
+    //   const loading = await this.loadingController.create({
+    //     spinner: 'circles',
+    //     cssClass: 'custom-loading',
+    //   });
+    //   await loading.present();
+    //   this.articlesService.getLatestNews().subscribe((res) => {
+    //     let data = Object.values(res)[2];
+    //     loading.dismiss();
+    //     this.articles = [...data];
+    //   });
+    // } else {
+    //   this.articlesService.getSearchingNews(content).subscribe((res) => {
+    //     let data = Object.values(res)[2];
+    //     this.articles = [...data];
+    //   });
+    // }
   }
 
   searching(event: any) {
