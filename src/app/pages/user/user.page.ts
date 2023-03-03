@@ -1,8 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IonModal } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
 import { Router } from '@angular/router';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
-import { AlertController, LoadingController } from '@ionic/angular';
+import {
+  AlertController,
+  LoadingController,
+  NavController,
+} from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -11,7 +17,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./user.page.scss'],
 })
 export class UserPage implements OnInit {
-  userInfo = null;
+  @ViewChild(IonModal) modal!: IonModal;
+  user: any = null;
   credentials!: FormGroup;
 
   constructor(
@@ -19,7 +26,8 @@ export class UserPage implements OnInit {
     private loadingController: LoadingController,
     private alertController: AlertController,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private navController: NavController
   ) {}
 
   // Access Form Fields
@@ -41,19 +49,19 @@ export class UserPage implements OnInit {
   }
 
   async loginWithGoogle() {
-    const googleUser = await GoogleAuth.signIn();
-    console.log(googleUser);
+    this.user = await GoogleAuth.signIn();
+    console.log(this.user);
   }
 
   async register() {
     const loading = await this.loadingController.create();
     await loading.present();
 
-    const user = await this.authService.register(this.credentials.value);
+    this.user = await this.authService.register(this.credentials.value);
 
     await loading.dismiss();
 
-    if (user) {
+    if (this.user) {
       //got user !
     } else {
       this.showAlert('Registration Failed', 'Please try again!');
@@ -61,26 +69,53 @@ export class UserPage implements OnInit {
   }
 
   async login() {
-    const loading = await this.loadingController.create();
+    const loading = await this.loadingController.create({
+      spinner: 'circles',
+      cssClass: 'custom-loading',
+    });
     await loading.present();
 
-    const user = await this.authService.login(this.credentials.value);
+    this.user = await this.authService.login(this.credentials.value);
 
     await loading.dismiss();
 
-    if (user) {
+    if (this.user) {
       //got user !
     } else {
       this.showAlert('Login Failed', 'Please try again!');
     }
   }
 
+  logout() {
+    this.authService.logout();
+    GoogleAuth.signOut();
+    this.user = null;
+  }
+
   async showAlert(header: string, message: string) {
     const alert = await this.alertController.create({
+      cssClass: 'customAlert',
       header,
       message,
       buttons: ['OK'],
     });
     await alert.present();
+  }
+
+  navigateForward() {
+    this.navController.setDirection('forward');
+    this.router.navigate(['/']);
+  }
+
+  // modal controls
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      console.log('modal closed');
+    }
   }
 }

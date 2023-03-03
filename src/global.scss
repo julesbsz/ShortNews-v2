@@ -10,9 +10,13 @@
  */
 
 //  Custom CSS
-ion-loading.custom-loading {
+.custom-loading {
   --background: #2c303a;
   --spinner-color: #ffffff;
+}
+
+.customAlert {
+  --background: #2c303a;
 }
 
 /* Core CSS required for Ionic components to work properly */

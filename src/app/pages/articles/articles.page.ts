@@ -32,23 +32,23 @@ export class ArticlesPage implements OnInit {
   }
 
   async loadArticles(content: string) {
-    // if (content === '') {
-    //   const loading = await this.loadingController.create({
-    //     spinner: 'circles',
-    //     cssClass: 'custom-loading',
-    //   });
-    //   await loading.present();
-    //   this.articlesService.getLatestNews().subscribe((res) => {
-    //     let data = Object.values(res)[2];
-    //     loading.dismiss();
-    //     this.articles = [...data];
-    //   });
-    // } else {
-    //   this.articlesService.getSearchingNews(content).subscribe((res) => {
-    //     let data = Object.values(res)[2];
-    //     this.articles = [...data];
-    //   });
-    // }
+    if (content === '') {
+      const loading = await this.loadingController.create({
+        spinner: 'circles',
+        cssClass: 'custom-loading',
+      });
+      await loading.present();
+      this.articlesService.getLatestNews().subscribe((res) => {
+        let data = Object.values(res)[2];
+        loading.dismiss();
+        this.articles = [...data];
+      });
+    } else {
+      this.articlesService.getSearchingNews(content).subscribe((res) => {
+        let data = Object.values(res)[2];
+        this.articles = [...data];
+      });
+    }
   }
 
   searching(event: any) {
